@@ -9,6 +9,8 @@ const { log } = require('./utils')
 const { secretKey } = require('./config')
 
 const index = require('./routes/index')
+const todo = require('./routes/todo')
+
 
 const app = express()
 
@@ -18,6 +20,9 @@ app.use(bodyParser.urlencoded({
 
 app.use(session({
     secret: secretKey,
+    cookie: {
+        maxAge: 60000,
+    }
 }))
 
 nunjucks.configure('templates', {
@@ -30,6 +35,7 @@ const asset = path.join(__dirname, 'public')
 app.use('/static', express.static(asset))
 
 app.use('/', index)
+app.use('/todo', todo)
 
 const run = (port=3000, host='') => {
     const server = app.listen(port, host, () => {

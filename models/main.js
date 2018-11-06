@@ -51,14 +51,19 @@ class Model {
         return m
     }
 
-    static remove(id) {
-        const ms = this.all()
-        const index = ms.findIndex(m => m.id === id)
-        if (index > -1) {
-            ms.splice(index, 1)
-        }
-        const path = this.dbPath()
-        save(ms, path)
+    static remove(id, removed) {
+        // const ms = this.all()
+        // const index = ms.findIndex(m => m.id === id)
+        // if (index > -1) {
+        //     ms.splice(index, 1)
+        // }
+        // const path = this.dbPath()
+        // save(ms, path)
+        const m = this.get(id)
+        m.removed = removed
+        m.updated_time = Date.now()
+        m.save()
+        return m
     }
 
     static all() {
