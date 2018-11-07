@@ -41,22 +41,15 @@ class Todo extends Model {
         t.save()
         return t
     }
-}
 
-const testAdd = () => {
-    const form = {
-        title: '打人',
+    static uncompleted(id, uncompleted) {
+        const t = Todo.get(id)
+        t.completed = uncompleted
+        t.updated_time = Date.now()
+        t.save()
+        return t
     }
-    const t = Todo.create(form)
-    t.save()
 }
 
-const test = () => {
-
-}
-
-if (require.main === module) {
-    test()
-}
 
 module.exports = Todo

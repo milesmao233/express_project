@@ -31,6 +31,31 @@ todo.get('/delete/:todoId', (request, response) => {
     response.redirect('/todo')
 })
 
-// todo.post()
+todo.get('/edit/:todoId', (request, response) => {
+    const id = Number(request.params.todoId)
+    const t = Todo.get(id)
+    const args = {
+        todo: t,
+    }
+    response.render('todo/edit.html', args)
+})
+
+todo.post('/update', (request, response) => {
+    const form = request.body
+    Todo.update(form)
+    response.redirect('/todo')
+})
+
+todo.get('/complete/:todoId', (request, response) => {
+    const id = Number(request.params.todoId)
+    Todo.complete(id, true)
+    response.redirect('/todo')
+})
+
+todo.get('/uncompleted/:todoId', (request, response) => {
+    const id = Number(request.params.todoId)
+    Todo.uncompleted(id, false)
+    response.redirect('/todo')
+})
 
 module.exports = todo
