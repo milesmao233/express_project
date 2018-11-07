@@ -2,11 +2,11 @@
   {
     "id": 1,
     "created_time": 1541496220484,
-    "updated_time": 1541496220484,
+    "updated_time": 1541570727495,
     "title": "tttt",
     "completed": false,
     "userId": -1,
-    "removed": false
+    "removed": true
   },
   {
     "id": 2,
