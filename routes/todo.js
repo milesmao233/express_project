@@ -8,7 +8,7 @@ const todo = express.Router()
 
 todo.get('/', (request, response) => {
     const u = currentUser(request)
-    const todoList = Todo.findAll('user_id', u.id)
+    const todoList = Todo.findAll('userId', u.id)
     const args = {
         todos: todoList,
     }

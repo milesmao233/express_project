@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>weibo</title>
+    <style>
+        .comment {
+            border: 1px red solid;
+        }
+
+        .removed {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<a href="/weibo/new">写新微博</a>
+
+{% for w in weibos %}
+{% if not w.removed %}
+    {% set weiboClass = "" %}
+{% else %}
+    {% set weiboClass = "removed" %}
+{% endif %}
+
+<div class="{{ weiboClass }}">
+    {{ w.content }} from {{ w.user().username }}
+    <a href="/weibo/delete/{{ w.id }}">删除</a>
+    <a href="/weibo/edit/{{ w.id }}">修改</a>
+    {% for c in w.comments() %}
+    {% if not c.removed %}
+    {% set commentClass = "" %}
+    {% else %}
+    {% set commentClass = "removed" %}
+    {% endif %}
+<div class="comment {{ commentClass }}">
+    {{ c.user().username }} : {{ c.content }}
+    <a href="/weibo_comment/edit/{{ c.id }}">修改</a>
+    <a href="/weibo_comment/delete/{{ c.id }}">删除</a>
+</div>
+    {% endfor %}
+<form action="/weibo_comment/add" method="post">
+    <input type="hidden" name="weiboId" value="{{ w.id }}">
+    <input name="content">
+    <br>
+    <button type="submit">添加评论</button>
+</form>
+</div>
+{% endfor %}
+</body>
+</html>

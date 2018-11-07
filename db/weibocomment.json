@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "created_time": 1541565105065,
+    "updated_time": 1541565520706,
+    "content": "3333",
+    "userId": 2,
+    "weiboId": 2,
+    "removed": true
+  },
+  {
+    "id": 2,
+    "created_time": 1541565127393,
+    "updated_time": 1541566556389,
+    "content": "8888",
+    "userId": 1,
+    "weiboId": 2,
+    "removed": false
+  },
+  {
+    "id": 3,
+    "created_time": 1541565147937,
+    "updated_time": 1541565415691,
+    "content": "yes",
+    "userId": 1,
+    "weiboId": 4,
+    "removed": true
+  },
+  {
+    "id": 4,
+    "created_time": 1541565514385,
+    "updated_time": 1541565516540,
+    "content": "bilibili",
+    "userId": 1,
+    "weiboId": 4,
+    "removed": true
+  }
+]

@@ -8,30 +8,13 @@ class Todo extends Model {
         super(form)
         this.title = form.title || ''
         this.completed = form.completed || false
-        this.user_id = 'user_id' in form ? form.user_id : userId
+        this.userId = 'userId' in form ? form.userId : userId
         this.removed = form.removed || false
     }
 
     static add(form, user_id) {
-        form.user_id = user_id
+        form.userId = user_id
         Todo.create(form)
-    }
-
-    static update(form) {
-        const id = Number(form.id)
-        const t = this.get(id)
-        const validNames = [
-            'title',
-        ]
-
-        Object.keys(form).forEach(k => {
-            if (validNames.includes(k)) {
-                t[k] = form[k]
-            }
-        })
-        t.updated_time = Date.now()
-        t.save()
-        return t
     }
 
     static complete(id, completed) {

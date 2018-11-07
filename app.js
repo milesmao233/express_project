@@ -10,6 +10,8 @@ const { secretKey } = require('./config')
 
 const index = require('./routes/index')
 const todo = require('./routes/todo')
+const weibo = require('./routes/weibo')
+const weibo_comment = require('./routes/weibo_comment')
 
 
 const app = express()
@@ -36,6 +38,8 @@ app.use('/static', express.static(asset))
 
 app.use('/', index)
 app.use('/todo', todo)
+app.use('/weibo', weibo)
+app.use('/weibo_comment', weibo_comment)
 
 const run = (port=3000, host='') => {
     const server = app.listen(port, host, () => {

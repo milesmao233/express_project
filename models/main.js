@@ -66,6 +66,24 @@ class Model {
         return m
     }
 
+    static update(form) {
+        const id = Number(form.id)
+        const t = this.get(id)
+        const validNames = [
+            'title',
+            'content',
+        ]
+
+        Object.keys(form).forEach(k => {
+            if (validNames.includes(k)) {
+                t[k] = form[k]
+            }
+        })
+        t.updated_time = Date.now()
+        t.save()
+        return t
+    }
+
     static all() {
         const path = this.dbPath()
         const models = load(path)
